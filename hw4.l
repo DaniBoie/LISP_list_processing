@@ -103,7 +103,7 @@
       nil
     )
     ((equal X (car L))
-      (cons nil (MY-REMOVE X (cdr L)))
+      (MY-REMOVE X (cdr L))
     )
     (T
       (cons (car L) (MY-REMOVE X (cdr L)))
