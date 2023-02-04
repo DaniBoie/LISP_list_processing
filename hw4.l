@@ -55,7 +55,7 @@
       (apply F L)
     )
     (T
-      ( MY-APPEND ( (apply F (cons (car L) nil)) (MY-MAPCAR F (cdr L)) ) )
+      ( MY-APPEND ( (apply F (car L)) (MY-MAPCAR F (cdr L)) ) )
     )
 
   )
