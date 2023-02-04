@@ -93,11 +93,11 @@
     )
     (T ;; Else
       (cond 
-        ((equal N (car L)) ;; If Atom N == Car L return L
+        ((equal N (MY-LENGTH L)) ;; If N == Length L return L
           L
         )
         (T ;; Else Recurse down list looking for N
-          (MY-NTH (cdr L) N)
+          (MY-NTH (cdr L) (- N 1))
         )
       )
     )
