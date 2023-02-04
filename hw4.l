@@ -68,8 +68,10 @@
 
 (defun MY-COPY (L) 
   (cond
-    ((equal 1 (MY-LENGTH L))
-      (cons (car L) nil)
+    ((equal 0 (MY-LENGTH L))
+      nil
+    )
+    (()
     )
     (T
       (cons (car L) (MY-COPY (cdr L)))
