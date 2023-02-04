@@ -48,4 +48,16 @@
   )
 )
 
-// Comment for the end
+(defun MY-MAPCAR (F L)
+
+  (cond
+    ((equal 1 (MY-LENGTH L))
+      ( cons (apply F (car L)) nil )
+    )
+    (T
+      ( MY-APPEND ( (apply F (car L)) (MY-MAPCAR (cdr L)) ) )
+    )
+
+  )
+
+)
