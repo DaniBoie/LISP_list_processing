@@ -43,7 +43,10 @@
       L
     )
     (T
-      ( MY-APPEND (MY-REVERSE (cdr L)) (cons (car L) nil) )
+      (MY-APPEND 
+        (MY-REVERSE (cdr L)) 
+        (cons (car L) nil) 
+      )
     )
   )
 )
@@ -52,12 +55,14 @@
 
   (cond
     ((equal 1 (MY-LENGTH L))
-      (apply F L)
+      (cons (apply F L) nil)
     )
     (T
-      ( MY-APPEND ( (apply F (car L)) (MY-MAPCAR F (cdr L)) ) )
+      (MY-APPEND 
+        (cons (apply F (cons (car L) nil)))  
+        (MY-MAPCAR F (cdr L)) 
+      )
     )
-
   )
 
 )
