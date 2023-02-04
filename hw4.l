@@ -97,7 +97,7 @@
           L
         )
         (T ;; Else Recurse down list looking for N
-          MY-NTH((cdr L) N)
+          (MY-NTH (cdr L) N)
         )
       )
     )
