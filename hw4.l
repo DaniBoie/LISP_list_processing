@@ -91,15 +91,24 @@
     ((equal 1 N) ;; If N == 1 return L
       L
     )
-    (T ;; Else
-      (cond 
-        ((equal N (MY-LENGTH L)) ;; If N == Length L return L
-          L
-        )
-        (T ;; Else Recurse down list looking for N
-          (MY-NTH (cdr L) (- N 1))
-        )
-      )
+    (T  ;; Else Recurse down list until nth is reached
+      (MY-NTH (cdr L) (- N 1))
     )
   )
+)
+
+(defun MY-REMOVE (X L)
+  (cond
+    ((equal 0 (MY-LENGTH L))
+      nil
+    )
+    ((equal X (car L))
+      (cons nil (MY-REMOVE X (cdr L)))
+    )
+    (T
+      (cons (car L) (MY-REMOVE X (cdr L)))
+    )
+  
+  )
+
 )
