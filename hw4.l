@@ -1,4 +1,4 @@
-(defun MY-LENGTH (L)
+(defun MY-LENGTH (L) ;;Takes proper list : Returns number of atoms
   (cond ;; Base Case: Length == 0
     ((null L)
       0
@@ -9,7 +9,7 @@
   )
 )
 
-(defun MY-MEMQ (A L)
+(defun MY-MEMQ (A L) ;; Takes Atom, Proper List : returns List starting from first occurance of Atom
   (cond ;; Base Cases: If List[0] == searching_atom return List
     ((null L)
       nil
@@ -23,7 +23,7 @@
   )
 )
 
-(defun MY-APPEND (L1 L2)
+(defun MY-APPEND (L1 L2) ;; Takes Proper List 1/2 : Returns [ProperList1, ProperList2]
   (cond ;; Base Cases: If either list is empty, appened form is just the other list.
     ((null L1)
       L2
@@ -37,12 +37,12 @@
   )
 )
 
-(defun MY-REVERSE (L)
+(defun MY-REVERSE (L) ;; Takes proper List L : Returns Reverse of list L
   (cond ;; Base Case: if length 1, return element by itself
     ((equal 1 (MY-LENGTH L))
       L
     )
-    (T ;; Recursive Step: return the reverse of the list 1 smaller than L APPENDED to L. [smaller than L] + [L]
+    (T ;; Recursive Step: return the reverse of the list 1 smaller than L APPENDED to L -> [smaller than L] + [L]
       (MY-APPEND 
         (MY-REVERSE (cdr L)) 
         (cons (car L) nil) 
@@ -51,13 +51,13 @@
   )
 )
 
-(defun MY-MAPCAR (F L)
+(defun MY-MAPCAR (F L) ;; Takes Function F & ProperList L : Returns list of results of F on elements of L -> [(F L[0]), (F L[1]), ... (F L(n))]
 
   (cond ;; Base Case: if length 1, return list with only that value mapped
     ((equal 1 (MY-LENGTH L))
       (cons (apply F L) nil)
     )
-    (T ;; Recursive Step: return first atom (turned into list) mapped with F APPENDED to the rest of the list mapped with F. 
+    (T ;; Recursive Step: return first atom (turned into list) mapped with F APPENDED to the rest of the list mapped with F
       (MY-APPEND 
         (cons (apply F (cons (car L) nil)) nil)  
         (MY-MAPCAR F (cdr L)) 
@@ -66,10 +66,10 @@
   )
 )
 
-(defun MY-COPY (L) 
+(defun MY-COPY (L) ;; Takes ProperList L : Returns deep copy of L
   (cond
-    ((equal 0 (MY-LENGTH L))
-      nil
+    ((equal 1 (MY-LENGTH L))
+      (cons (car L) nil)
     )
     ((listp L)
       (cons (car L) (MY-COPY (cdr L)))
