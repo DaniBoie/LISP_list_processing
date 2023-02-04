@@ -52,7 +52,7 @@
 
   (cond
     ((equal 1 (MY-LENGTH L))
-      ( cons (apply F L) nil)
+      (apply F L)
     )
     (T
       ( MY-APPEND ( (apply F (cons (car L) nil)) (MY-MAPCAR F (cdr L)) ) )
