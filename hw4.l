@@ -86,7 +86,7 @@
       nil
     )
     ((equal 0 N) ;; If N == 0 return nil Atom + [List]
-      (nil . L)
+      (cons nil L)
     )
     ((equal 1 N) ;; If N == 1 return L
       L
