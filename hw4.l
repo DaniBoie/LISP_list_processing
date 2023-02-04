@@ -71,9 +71,8 @@
     ((equal 0 (MY-LENGTH L))
       nil
     )
-    (()
     )
-    (T
+    ((listp L)
       (cons (car L) (MY-COPY (cdr L)))
     )
   )
