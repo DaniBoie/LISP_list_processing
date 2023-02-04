@@ -80,15 +80,15 @@
   )
 )
 
-(defun MY-NTH (L N) ;; Takes Proper list L, Positive Int N : Returns 
+(defun MY-NTH (L N) ;; Takes Proper list L, Positive Int N : Returns List including and after nth element
   (cond ;; Base Cases
     ((> N (MY-LENGTH L)) ;; If N > length of L return nil
       nil
     )
-    ((equal 0 (MY-LENGTH L)) ;; If N == 0 return nil Atom + [List]
+    ((equal 0 N) ;; If N == 0 return nil Atom + [List]
       (nil . L)
     )
-    ((equal 1 (MY-LENGTH L)) ;; If N == 1 return L
+    ((equal 1 N) ;; If N == 1 return L
       L
     )
     (T ;; Else
