@@ -71,8 +71,35 @@
     ((equal 1 (MY-LENGTH L))
       (cons (car L) nil)
     )
+    ((atom (cdr L))
+
+    )
     ((listp L)
       (cons (car L) (MY-COPY (cdr L)))
+    )
+  )
+)
+
+(defun MY-NTH (L N) ;; Takes Proper list L, Positive Int N : Returns 
+  (cond ;; Base Cases
+    ((> N (MY-LENGTH L)) ;; If N > length of L return nil
+      nil
+    )
+    ((equal 0 (MY-LENGTH L)) ;; If N == 0 return nil Atom + [List]
+      (nil . L)
+    )
+    ((equal 1 (MY-LENGTH L)) ;; If N == 1 return L
+      L
+    )
+    (T ;; Else
+      (cond 
+        ((equal N (car L)) ;; If Atom N == Car L return L
+          L
+        )
+        (T ;; Else Recurse down list looking for N
+          MY-NTH((cdr L) N)
+        )
+      )
     )
   )
 )
