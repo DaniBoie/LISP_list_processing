@@ -59,7 +59,7 @@
     )
     (T
       (MY-APPEND 
-        (cons (apply F (cons (car L) nil)))  
+        (cons (apply F (cons (car L) nil)) nil)  
         (MY-MAPCAR F (cdr L)) 
       )
     )
