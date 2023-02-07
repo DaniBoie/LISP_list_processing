@@ -128,7 +128,7 @@
     ((equal 0 (MY-LENGTH L))
       nil
     )
-    ((apply FN (car L))
+    ((apply FN (cons (car L) nil))
       (cons (car L) (MY-SUBSET FN (cdr L)))
     )
     (T
