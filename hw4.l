@@ -122,17 +122,44 @@
   )
 )
 
-(defun MY-SUBSET (FN L)
-
+(defun MY-SUBSET (FN L) ;; Takes function FN and proper list L : Returns new list only containing elements of L that returned T when applied with FN
   (cond
-    ((equal 0 (MY-LENGTH L))
+    ((equal 0 (MY-LENGTH L)) ;; Base Case: If null List, nil result
       nil
     )
-    ((apply FN (cons (car L) nil))
+    ((apply FN (cons (car L) nil)) ;; If current element of list returns True, add it to list and recurse down rest of elements
       (cons (car L) (MY-SUBSET FN (cdr L)))
     )
-    (T
+    (T ;; If current element of list returns False, recurse down the list without this element.
       (MY-SUBSET FN (cdr L))
     )
   )
+)
+
+(defun MY-ADD (N1 N2)
+
+ ;; YET TO BE DEFINED
+
+)
+
+(defun MY-MERGE (L1 L2)
+
+  (cond
+    ((equal 0 (MY-LENGTH L1))
+      L2
+    )
+    ((equal 0 (MY-LENGTH L2))
+      L1
+    )
+    ((< (car L1) (car L2))
+      (cons (car L1) (MY-MERGE (cdr L1) L2))
+    )
+    ((> (car L1) (car L2))
+      (cons (car L2) (MY-MERGE L1 (cdr L2)))
+    )
+    (T
+      (cons (car L1) (MY-MERGE (cdr L1) L2))
+    )
+  )
+
 )
