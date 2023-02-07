@@ -66,6 +66,7 @@
   )
 )
 
+;; !! NOT PASSING TEST CASE ('A B . C)
 (defun MY-COPY (L) ;; Takes ProperList L : Returns deep copy of L
   (cond
     ((equal 1 (MY-LENGTH L))
@@ -97,18 +98,41 @@
   )
 )
 
-(defun MY-REMOVE (X L)
+(defun MY-REMOVE (X L) ;; Takes Atom to remove from list X and list L : Returns list L without occurances of X at top level.
+  (cond
+    ((equal 0 (MY-LENGTH L)) ;; Base Case: If null List, nil result
+      nil
+    )
+    ((equal X (car L)) ;; if the current element == X return result my-remove on L[1->n]
+      (MY-REMOVE X (cdr L))
+    )
+    (T
+      (cons (car L) (MY-REMOVE X (cdr L))) ;; else return current element + result of my-remove on L[1->n]
+    )
+  )
+)
+
+;; NOT FULLY DEFINED
+(defun MY-SUBST (X Y Z)
+  (cond
+    ((equal 0 (MY-LENGTH Z))
+      nil
+    ) 
+
+  )
+)
+
+(defun MY-SUBSET (FN L)
+
   (cond
     ((equal 0 (MY-LENGTH L))
       nil
     )
-    ((equal X (car L))
-      (MY-REMOVE X (cdr L))
+    ((FN (car L))
+      (cons (car L) (MY-SUBSET FN (cdr L)))
     )
     (T
-      (cons (car L) (MY-REMOVE X (cdr L)))
+      (MY-SUBSET FN (cdr L))
     )
-  
   )
-
 )
