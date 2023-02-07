@@ -142,24 +142,47 @@
 
 )
 
-(defun MY-MERGE (L1 L2)
-
+(defun MY-MERGE (L1 L2) ;; Takes sorted proper lists L1 and L2 : Returns new sorted list containing elements of both lists.
   (cond
     ((equal 0 (MY-LENGTH L1))
       L2
     )
-    ((equal 0 (MY-LENGTH L2))
+    ((equal 0 (MY-LENGTH L2)) ;; If either List is empty, return the other
       L1
     )
-    ((< (car L1) (car L2))
+    ((< (car L1) (car L2)) 
       (cons (car L1) (MY-MERGE (cdr L1) L2))
     )
-    ((> (car L1) (car L2))
+    ((> (car L1) (car L2)) ;; If current elements != return current smaller elem + [MY-MERGE everything else]
       (cons (car L2) (MY-MERGE L1 (cdr L2)))
     )
-    (T
+    (T ;; If values are equal, doesn't matter which case you return
       (cons (car L1) (MY-MERGE (cdr L1) L2))
     )
   )
+)
 
+(defun MY-SUBLIST (L1 L2)
+  (cond
+  
+    ((> (MY-LENGTH L1) (MY-LENGTH L2))
+      nil
+    )
+    ((equal 1 (MY-LENGTH L1))
+      (cond
+        ((eq (car L1) (car L2))
+          T
+        )
+        (T
+          nil
+        )
+      )
+    )
+    ((eq (car L1) (car L2))
+      (MY-SUBLIST (cdr L1) (cdr L2))
+    )
+    (T
+      (MY-SUBLIST L1 (cdr L2))
+    )
+  )
 )
