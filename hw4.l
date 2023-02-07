@@ -165,16 +165,16 @@
 (defun MY-SUBLIST (L1 L2)
   (cond
   
-    ((> (MY-LENGTH L1) (MY-LENGTH L2))
+    ((> (MY-LENGTH L1) (MY-LENGTH L2)) ;; Base Case for nil, length of sublist is greater than search list
       nil
     )
-    ((equal 1 (MY-LENGTH L1))
+    ((equal 1 (MY-LENGTH L1)) ;; Base Case for T, If sublist is of size 1 and 
       (cond
         ((eq (car L1) (car L2))
           T
         )
         (T
-          nil
+          (MY-SUBLIST L1 (cdr L2))
         )
       )
     )
