@@ -162,27 +162,42 @@
   )
 )
 
-(defun MY-SUBLIST (L1 L2)
+(defun MY-SUBLIST (L1 L2) ;; Takes sublist L1 and search list L2 : Returns T if L1 is sublist of L2 and nil otherwise.
   (cond
   
     ((> (MY-LENGTH L1) (MY-LENGTH L2)) ;; Base Case for nil, length of sublist is greater than search list
       nil
     )
-    ((equal 1 (MY-LENGTH L1)) ;; Base Case for T, If sublist is of size 1 and 
+    ((equal 1 (MY-LENGTH L1)) ;; Base Case for T, If sublist is of size 1 and current element in L2 == sublist
       (cond
         ((eq (car L1) (car L2))
           T
         )
-        (T
+        (T ;; else keep searching for L1 in rest of L2
           (MY-SUBLIST L1 (cdr L2))
         )
       )
     )
-    ((eq (car L1) (car L2))
+    ((eq (car L1) (car L2)) ;; If found matching element in L2 for sublist L1, recurse down fiding rest of L1 sublist in rest of L2 search list.
       (MY-SUBLIST (cdr L1) (cdr L2))
     )
-    (T
+    (T ;; else recurse searching for match
       (MY-SUBLIST L1 (cdr L2))
+    )
+  )
+)
+
+(defun MY-ASSOC (A ALIST)
+
+  (cond
+    ((equal 0 (MY-LENGTH ALIST))
+      nil
+    )
+    ((equal A caar(ALIST))
+      car(ALIST)
+    )
+    (T
+      (MY-ASSOC A (cdr ALIST))
     )
   )
 )
