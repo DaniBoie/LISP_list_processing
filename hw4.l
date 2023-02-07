@@ -214,7 +214,7 @@
     )
 
     (T
-      (cons (cadr (MY-ASSOC (car L) ALIST))  (MY-REPLACE ALIST (cdr L)) )
+      (cons (cdr (MY-ASSOC (car L) ALIST))  (MY-REPLACE ALIST (cdr L)) )
     )
 
 
