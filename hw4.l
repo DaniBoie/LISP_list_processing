@@ -118,9 +118,9 @@
     ((equal 0 (MY-LENGTH Z)) ;; Base Case: If null List, nil result
       nil
     )
-    ((listp (car Z))
-      (MY-SUBST X Y (car Z))
-    )
+    ;;((listp (car Z))
+    ;;  (MY-SUBST X Y (car Z))
+    ;;)
     ((equal X (car Z))
       (cons Y (MY-SUBST X Y (cdr Z)))
     )
