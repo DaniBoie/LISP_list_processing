@@ -204,14 +204,19 @@
 
 (defun MY-REPLACE (ALIST L)
   (cond
+
     ((equal 0 (MY-LENGTH L))
       nil
     )
+
     ((equal nil (MY-ASSOC (car L) ALIST))
-      (cons (car L) (MY-REPLACE ALIST (cdr L))))
+      (cons (car L) (MY-REPLACE ALIST (cdr L)))
     )
+
     (T
-      (cons (cdr (MY-ASSOC (car L) ALIST))  (MY-REPLACE ALIST (cdr L)) )
+      (cons (cadr (MY-ASSOC (car L) ALIST))  (MY-REPLACE ALIST (cdr L)) )
     )
+
+
   )
 )
