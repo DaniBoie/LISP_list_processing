@@ -193,7 +193,7 @@
     ((equal 0 (MY-LENGTH ALIST))
       nil
     )
-    ((equal A caar(ALIST))
+    ((equal A (caar ALIST))
       car(ALIST)
     )
     (T
