@@ -194,7 +194,7 @@
       nil
     )
     ((equal A (caar ALIST))
-      car(ALIST)
+      (car ALIST)
     )
     (T
       (MY-ASSOC A (cdr ALIST))
