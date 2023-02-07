@@ -38,9 +38,9 @@
 )
 
 (defun MY-REVERSE (L) ;; Takes proper List L : Returns Reverse of list L
-  (cond ;; Base Case: if length 1, return element by itself
-    ((equal 1 (MY-LENGTH L))
-      L
+  (cond ;; Base Case: if length 0, return nil
+    ((equal 0 (MY-LENGTH L))
+      nil
     )
     (T ;; Recursive Step: return the reverse of the list 1 smaller than L APPENDED to L -> [smaller than L] + [L]
       (MY-APPEND 
@@ -66,14 +66,15 @@
   )
 )
 
-;; !! NOT PASSING TEST CASE ('A B . C)
+;; !! NOT PASSING TEST CASE ('A B . C) OR (EQ (SETQ L '(A (B) C)) (MY-COPY L))
+
 (defun MY-COPY (L) ;; Takes ProperList L : Returns deep copy of L
   (cond
     ((equal 1 (MY-LENGTH L))
       (cons (car L) nil)
     )
-    ((atom (cdr L))
-
+    ((atom (cdr L)) ;; TEST
+      (cons (cdr L) nil)
     )
     ((listp L)
       (cons (car L) (MY-COPY (cdr L)))
@@ -111,14 +112,21 @@
     )
   )
 )
-
-;; NOT FULLY DEFINED
+ ;; !! IN PROGRESS !!
 (defun MY-SUBST (X Y Z)
   (cond
-    ((equal 0 (MY-LENGTH Z))
+    ((equal 0 (MY-LENGTH Z)) ;; Base Case: If null List, nil result
       nil
-    ) 
-
+    )
+    ((listp (car Z))
+      (MY-SUBST X Y (car Z))
+    )
+    ((equal X (car Z))
+      (cons Y (MY-SUBST X Y (cdr Z)))
+    )
+    (T
+      (cons (car Z) (MY-SUBST X Y (cdr Z)))
+    )
   )
 )
 
@@ -138,7 +146,8 @@
 
 (defun MY-ADD (N1 N2)
 
- ;; YET TO BE DEFINED
+ ;; !! YET TO BE DEFINED
+ nil
 
 )
 
@@ -161,6 +170,8 @@
     )
   )
 )
+
+;; !! NOT PASSING TEST CASE (MY-SUBLIST '(2 4) '(1 2 3 4 5)) & (MY-SUBLIST '(1 3 5) '(1 2 3 4 5))
 
 (defun MY-SUBLIST (L1 L2) ;; Takes sublist L1 and search list L2 : Returns T if L1 is sublist of L2 and nil otherwise.
   (cond
@@ -187,36 +198,30 @@
   )
 )
 
-(defun MY-ASSOC (A ALIST)
-
+(defun MY-ASSOC (A ALIST) ;; Takes Atom A and association list ALIST : Returns the association pair for A in ALIST. If there is no association, it returns nil
   (cond
-    ((equal 0 (MY-LENGTH ALIST))
+    ((equal 0 (MY-LENGTH ALIST)) ;; Base Case : If null association list return nil
       nil
     )
-    ((equal A (caar ALIST))
+    ((equal A (caar ALIST)) ;; If atom A == current ALIST.key return (ALIST.key, ALIST.value)
       (car ALIST)
     )
-    (T
+    (T ;; else recurse down searching for match
       (MY-ASSOC A (cdr ALIST))
     )
   )
 )
 
-(defun MY-REPLACE (ALIST L)
+(defun MY-REPLACE (ALIST L) ;; Takes association list ALIST and S-expression L : Returns L with each variable (key) in ALIST replaced with the corresponding value it is bound to in ALIST.
   (cond
-
-    ((equal 0 (MY-LENGTH L))
+    ((equal 0 (MY-LENGTH L)) ;; Base Case : Null List returns nil
       nil
     )
-
-    ((equal nil (MY-ASSOC (car L) ALIST))
+    ((equal nil (MY-ASSOC (car L) ALIST)) ;; If There is no association for the current element, return a list of the current element + MY-REPLACE of rest of list
       (cons (car L) (MY-REPLACE ALIST (cdr L)))
     )
-
-    (T
+    (T ;; Else return a list of the ALIST[current_element] + MY-REPLACE of rest of list
       (cons (cdr (MY-ASSOC (car L) ALIST))  (MY-REPLACE ALIST (cdr L)) )
     )
-
-
   )
 )
