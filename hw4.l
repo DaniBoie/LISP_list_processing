@@ -73,10 +73,10 @@
     ((equal 0 (MY-LENGTH L))
       nil
     )
-    ((atom L) ;; TEST
-      (cons L nil)
+    ((listp (car L))
+      (cons (MY-COPY (car L)) (MY-COPY (cdr L)))
     )
-    ((listp L)
+    (T
       (cons (car L) (MY-COPY (cdr L)))
     )
   )
