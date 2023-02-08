@@ -77,7 +77,7 @@
       (cons (MY-COPY (car L)) (MY-COPY (cdr L)))
     )
     (T
-      (cons (car L) (MY-COPY (cdr L)))
+      (cons (car L) nil)
     )
   )
 )
