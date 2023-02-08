@@ -70,11 +70,11 @@
 
 (defun MY-COPY (L) ;; Takes ProperList L : Returns deep copy of L
   (cond
-    ((equal 1 (MY-LENGTH L))
-      (cons (car L) nil)
+    ((equal 0 (MY-LENGTH L))
+      nil
     )
-    ((atom (cdr L)) ;; TEST
-      (cons (cdr L) nil)
+    ((atom L) ;; TEST
+      ;;(cons (cdr L) nil)
     )
     ((listp L)
       (cons (car L) (MY-COPY (cdr L)))
@@ -112,19 +112,19 @@
     )
   )
 )
- ;; !! IN PROGRESS !!
+
 (defun MY-SUBST (X Y Z)
   (cond
     ((equal 0 (MY-LENGTH Z)) ;; Base Case: If null List, nil result
       nil
     )
-    ((listp (car Z))
+    ((listp (car Z)) ;; if the current element is a List, return [MY-SUBST current List] + [MY-SUBST rest of Z]
       (cons (MY-SUBST X Y (car Z)) (MY-SUBST X Y (cdr Z)))
     )
-    ((equal X (car Z))
+    ((equal X (car Z)) ;; if current element == search element, return replace element + [MY-SUBST rest of Z]
       (cons Y (MY-SUBST X Y (cdr Z)))
     )
-    (T
+    (T ;; else return current element + [MY-SUBST rest of Z]
       (cons (car Z) (MY-SUBST X Y (cdr Z)))
     )
   )
