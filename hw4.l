@@ -74,7 +74,7 @@
       nil
     )
     ((atom L) ;; TEST
-      ;;(cons (cdr L) nil)
+      (cons L nil)
     )
     ((listp L)
       (cons (car L) (MY-COPY (cdr L)))
