@@ -157,7 +157,7 @@
  (cond
   ((and (equal 1 (MY-LENGTH N1)) (equal 1 (MY-LENGTH N2)))
     (cond
-      ((> 9 (+ (car N1) (car N2)))
+      ((> (+ (car N1) (car N2)) 9)
         (cons (- (+ (car N1) (car N2)) 10) '(1))
       )
 
