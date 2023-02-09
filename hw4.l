@@ -153,22 +153,32 @@
 (defun MY-ADD (N1 N2)
 
 
- ;; !! YET TO BE DEFINED
- (cond
-  ((and (equal 1 (MY-LENGTH N1)) (equal 1 (MY-LENGTH N2)))
+ ;; !! YET TO BE DEFINED (and (equal 1 (MY-LENGTH N1)) (equal 1 (MY-LENGTH N2)))
+ (cond ;; SINGLE DIGIT ADDITION AND CARRY
+  
+  
+  
+  (T ;; If
     (cond
-      ((> (+ (car N1) (car N2)) 9)
-        (cons (- (+ (car N1) (car N2)) 10) '(1))
+      ((equal 0 (MY-LENGTH N1))
+        N2
+      )
+      ((equal 0 (MY-LENGTH N2))
+        N1
       )
 
-      (T
-        (cons (+ (car N1) (car N2)) nil)
+      ((> (+ (car N1) (car N2)) 9) ;; if N1 + N2 > 9 return list (ones_digit, 1)
+        (cons 
+          (- (+ (car N1) (car N2)) 10) ;; current digit carryout
+          (cons (+ 1 (MY-ADD (cdr N1) (cdr N2))) nil) ;; 1 + (recurse)
+          ;; if (+ 1 (MY-ADD (cdr N1) (cdr N2))) > 9 return 
+        )
+      )
+
+      (T ;; else return list (N1 + N2)
+        (cons (+ (car N1) (car N2)) (MY-ADD (cdr N1) (cdr N2)))
       )
     )
-  )
-
-  (T
-    N1
   )
   
  )
