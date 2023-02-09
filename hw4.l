@@ -150,40 +150,30 @@
   )
 )
 
-(defun MY-ADD (N1 N2)
-
-
- ;; !! YET TO BE DEFINED (and (equal 1 (MY-LENGTH N1)) (equal 1 (MY-LENGTH N2)))
- (cond ;; SINGLE DIGIT ADDITION AND CARRY
+(defun MY-ADD (N1 N2)  
   
-  
-  
-  (T ;; If
-    (cond
+  (cond
 
-      ((equal 0 (MY-LENGTH N1))
-        N2
-      )
-      ((equal 0 (MY-LENGTH N2))
-        N1
-      )
+    ((equal 0 (MY-LENGTH N1)) ;; Base Cases : If either list is null, return the other.
+      N2
+    )
+    ((equal 0 (MY-LENGTH N2))
+      N1
+    )
 
-      ((> (+ (car N1) (car N2)) 9) ;; if N1 + N2 > 9 return list (ones_digit, 1)
-        (cons 
-          (- (+ (car N1) (car N2)) 10) ;; current digit carryout
-          (MY-ADD '(1) (MY-ADD (cdr N1) (cdr N2))) ;; 1 + recurse
-          ;; if (+ 1 (MY-ADD (cdr N1) (cdr N2))) > 9 return 
-        )
-      )
-
-      (T ;; else return list (N1 + N2)
-        (cons (+ (car N1) (car N2)) (MY-ADD (cdr N1) (cdr N2)))
+    ((> (+ (car N1) (car N2)) 9) ;; if N1 + N2 > 9 return list (ones_digit, 1 + MY-ADD the rest)
+      (cons 
+        (- (+ (car N1) (car N2)) 10) ;; current digit carryout
+        (MY-ADD '(1) (MY-ADD (cdr N1) (cdr N2))) ;; 1 + recurse    * TAUTOLOGY : SCENARIO A: CARRYOUT
       )
     )
+
+    (T ;; else return list (N1 + N2, MY-ADD the rest)    * TAUTOLOGY : SCENARIO B: NO CARRYOUT
+        (cons (+ (car N1) (car N2)) (MY-ADD (cdr N1) (cdr N2)))
+    )
+
   )
   
- )
-
 )
 
 (defun MY-MERGE (L1 L2) ;; Takes sorted proper lists L1 and L2 : Returns new sorted list containing elements of both lists.
