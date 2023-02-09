@@ -160,6 +160,7 @@
   
   (T ;; If
     (cond
+
       ((equal 0 (MY-LENGTH N1))
         N2
       )
@@ -170,7 +171,7 @@
       ((> (+ (car N1) (car N2)) 9) ;; if N1 + N2 > 9 return list (ones_digit, 1)
         (cons 
           (- (+ (car N1) (car N2)) 10) ;; current digit carryout
-          (cons (+ 1 (MY-ADD (cdr N1) (cdr N2))) nil) ;; 1 + (recurse)
+          (MY-ADD '(1) (MY-ADD (cdr N1) (cdr N2))) ;; 1 + recurse
           ;; if (+ 1 (MY-ADD (cdr N1) (cdr N2))) > 9 return 
         )
       )
