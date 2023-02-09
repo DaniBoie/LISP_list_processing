@@ -153,7 +153,24 @@
 (defun MY-ADD (N1 N2)
 
  ;; !! YET TO BE DEFINED
- nil
+ (cond
+  ((equal 1 (MY-LENGTH N1) && (equal 1 (MY-LENGTH N2)))
+    (cond
+      ((> 9 (+ (car N1) (car N2)))
+        (cons (- (+ (car N1) (car N2)) 10) '(1))
+      )
+
+      (T
+        (cons (+ (car N1) (car N2)) nil)
+      )
+    )
+  )
+
+  (T
+    N1
+  )
+  
+ )
 
 )
 
