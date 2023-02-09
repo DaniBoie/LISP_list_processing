@@ -76,13 +76,10 @@
     ((listp (car L))
       (cons (MY-COPY (car L)) (MY-COPY (cdr L)))
     )
+    ((atom L)
+      (cons L nil)
+    )
     (T
-      (cond
-        ((atom L)
-          (cons L nil)
-        )
-      )
-
       (cons (car L) (MY-COPY (cdr L)))
     )
   )
