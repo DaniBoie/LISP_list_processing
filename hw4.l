@@ -364,7 +364,7 @@
       (cons x nil)
     )
     (T
-      (cons (car L) (my_attach (cdr L)))
+      (cons (car L) (my_attach x (cdr L)))
     )
   )
 )
