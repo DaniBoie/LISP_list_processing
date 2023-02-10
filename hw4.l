@@ -368,3 +368,19 @@
     )
   )
 )
+
+(defun remove_all (L x) 
+
+  (cond
+    ((null L)
+      nil
+    )
+    ((equal x (car L))
+      (remove_all (cdr L) x)
+    )
+    (T
+      (cons (car L) (remove_all (cdr L) x))
+    )
+  )
+
+)
