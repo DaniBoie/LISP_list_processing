@@ -393,7 +393,7 @@
       L
     )
     (T
-      (rotate_left (my_attach (car L) (cdr L)) (- 1 n))
+      (rotate_left (my_attach (car L) (cdr L)) (- n 1))
     )
   )
 )
