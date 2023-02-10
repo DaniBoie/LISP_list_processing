@@ -357,3 +357,14 @@
     )
   )
 )
+
+(defun my_attach (L x)
+  (cond
+    ((null L)
+      (cons x nil)
+    )
+    (T
+      (cons (car L) (my_attach (cdr L)))
+    )
+  )
+)
