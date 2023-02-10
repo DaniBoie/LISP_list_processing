@@ -345,3 +345,15 @@
 
     T
     )
+
+
+(defun factorial (n)
+  (cond
+    ((equal 0 n)
+      1
+    )
+    (T
+      (* n (factorial (- n 1)))
+    )
+  )
+)
