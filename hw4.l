@@ -370,7 +370,6 @@
 )
 
 (defun remove_all (L x) 
-
   (cond
     ((null L)
       nil
@@ -382,5 +381,19 @@
       (cons (car L) (remove_all (cdr L) x))
     )
   )
+)
 
+(defun rotate_left (L n)
+
+  (cond
+    ((null L)
+      nil
+    )
+    ((equal 0 n)
+      L
+    )
+    (T
+      (cons (rotate_left (cdr L) (- 1 n)) (cons (car L) nil))
+    )
+  )
 )
