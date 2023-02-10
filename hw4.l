@@ -358,7 +358,7 @@
   )
 )
 
-(defun my_attach (L x)
+(defun my_attach (x L)
   (cond
     ((null L)
       (cons x nil)
