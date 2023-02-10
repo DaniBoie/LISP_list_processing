@@ -393,7 +393,18 @@
       L
     )
     (T
-      (cons (rotate_left (cdr L) (- 1 n)) (cons (car L) nil))
+      (rotate_left (my_attach (car L) (cdr L)) (- 1 n))
     )
   )
 )
+
+;;(defun rotate_helper (L)
+;;  (cond
+;;  ((null L))
+;;    nil
+;;  )
+;;  (T
+;;    
+;;  )
+;;
+;;)
